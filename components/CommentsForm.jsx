@@ -53,13 +53,13 @@ const CommentsForm = ({ slug }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
       <h3 className="text=xl mb-8 font-semibold border-b pb-4">
-        Comments Form
+        Додати коментар
       </h3>
       <div className="grid grid-cols-1 pag-4 mb-4">
         <textarea
           ref={commentEl}
           className="p-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700"
-          placeholder="Comment"
+          placeholder="Коментар"
           name="Comment"
         />
       </div>
@@ -68,7 +68,7 @@ const CommentsForm = ({ slug }) => {
           type="text"
           ref={nameEl}
           className="py-2 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700"
-          placeholder="Name"
+          placeholder="Ім'я"
           name="name"
         />
         <input
@@ -92,22 +92,22 @@ const CommentsForm = ({ slug }) => {
             className="text-gray-500 cursor-pointer ml-2"
             htmlFor="storeData"
           >
-            Save my email and name for the next time I comment
+            Зберегти ім'я та Email для наступного коментаря
           </label>
         </div>
       </div>
-      {error && <p className="text-xs text-red-500">All fiels required.</p>}
+      {error && <p className="text-xs text-red-500">Заповніть всі поля</p>}
       <div className="mt-8">
         <button
           className="transition duration-500 ease hover:bg-indigo-900 inline-block bg-pink-600 text-lg rounded-full text-white px-8 py-3 cursor-pointer"
           type="button"
           onClick={handleCommentSubmission}
         >
-          Post Comment
+          Надіслати коментар
         </button>
         {showSuccessMessage && (
           <span className="text-xl float-right font-semibold mt-3 text-green-500">
-            Comment submitted for review
+            Коментар відправлений для огляду
           </span>
         )}
       </div>
