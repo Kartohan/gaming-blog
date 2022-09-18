@@ -1,20 +1,15 @@
-import Head from 'next/head'
-import { Global } from '@emotion/react'
-import xw from 'xwind'
+import React, { useEffect, useState } from "react";
+import { Layout } from "../components";
 
-function App({ Component, pageProps }) {
+import "../styles/globals.scss";
+import "tailwindcss/tailwind.css";
+
+function MyApp({ Component, pageProps }) {
   return (
-    <>
-      <Head>
-        <title>Tailwindcss Emotion Example</title>
-      </Head>
-      <Global
-        //tailwind base styles + keyframes + ring and shadow classes variables  ... to global styles
-        styles={xw`XWIND_BASE XWIND_GLOBAL`}
-      />
-      <Component {...pageProps} />
-    </>
-  )
+    <Layout>
+      <Component {...pageProps} />;
+    </Layout>
+  );
 }
 
-export default App
+export default MyApp;
