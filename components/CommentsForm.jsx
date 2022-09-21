@@ -99,7 +99,7 @@ const CommentsForm = ({ slug }) => {
       {error && <p className="text-xs text-red-500">Заповніть всі поля</p>}
       <div className="mt-8">
         <button
-          className="transition duration-500 ease hover:bg-indigo-900 inline-block bg-pink-600 text-lg rounded-full text-white px-8 py-3 cursor-pointer"
+          className="transition duration-500 ease hover:bg-blue-900 inline-block bg-blue-500 text-lg rounded-full text-white px-8 py-3 cursor-pointer"
           type="button"
           onClick={handleCommentSubmission}
         >
