@@ -20,8 +20,8 @@ const PostCard = ({ post }) => {
         <h1 className="transition duration-500 text-center mb-5 cursor-pointer hover:text-blue-600 text-3xl font-semibold">
           <Link href={`/post/${post.slug}`}>{post.title}</Link>
         </h1>
-        <div className="block flex text-center items-center justify-center mb-4 w-full">
-          <div className="flex items-center justify-center mb-4 mb-0 w-auto mr-8">
+        <div className="flex text-center items-center justify-center mb-4 w-full">
+          <div className="flex items-center justify-center mb-0 w-auto mr-8">
             <Image
               unoptimized
               loader={grpahCMSImageLoader}

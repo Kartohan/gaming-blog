@@ -54,6 +54,15 @@ const PostDetail = ({ post }) => {
             src={obj.src}
           />
         );
+      case "iframe":
+        return (
+          <iframe
+            className="w-full"
+            height={obj.height}
+            src={obj.url}
+            title={obj.type}
+          ></iframe>
+        );
       default:
         return modifiedText;
     }
