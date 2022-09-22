@@ -57,6 +57,7 @@ const PostDetail = ({ post }) => {
       case "iframe":
         return (
           <iframe
+            key={index}
             className="w-full"
             height={obj.height}
             src={obj.url}
