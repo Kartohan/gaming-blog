@@ -9,6 +9,9 @@ module.exports = {
       boxShadow: {
         float: "0px 0px 47px -35px rgba(0,0,0,0.75)",
       },
+      gridTemplateColumns: {
+        post: "30% auto",
+      },
     },
   },
   plugins: [],
