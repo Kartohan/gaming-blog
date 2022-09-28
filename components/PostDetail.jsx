@@ -2,9 +2,8 @@ import React from "react";
 import moment from "moment";
 
 const PostDetail = ({ post }) => {
-  const getContentFragment = (index, text, obj, type) => {
+  const getContentFragment = (index, text, obj, type, children, href) => {
     let modifiedText = text;
-
     if (obj) {
       if (obj.bold) {
         modifiedText = <b key={index}>{text}</b>;
@@ -18,7 +17,6 @@ const PostDetail = ({ post }) => {
         modifiedText = <u key={index}>{text}</u>;
       }
     }
-
     switch (type) {
       case "heading-three":
         return (
@@ -31,9 +29,9 @@ const PostDetail = ({ post }) => {
       case "paragraph":
         return (
           <p key={index} className="mb-8">
-            {modifiedText.map((item, i) => (
-              <React.Fragment key={i}>{item}</React.Fragment>
-            ))}
+            {modifiedText.map((item, i) => {
+              return <React.Fragment key={i}>{item}</React.Fragment>;
+            })}
           </p>
         );
       case "heading-four":
@@ -63,6 +61,46 @@ const PostDetail = ({ post }) => {
             src={obj.url}
             title={obj.type}
           ></iframe>
+        );
+      case "link":
+        return (
+          <a className="text-blue-500" key={index} href={href} target="_blank">
+            {children.map((text, i) => (
+              <React.Fragment key={i}>{text}</React.Fragment>
+            ))}
+          </a>
+        );
+      case "bulleted-list":
+        return (
+          <ul className="list-disc ml-4 mt-2" key={index}>
+            {obj.children.map((list) =>
+              list.children.map((i) =>
+                i.children.map((j, index) => {
+                  return (
+                    <li>
+                      <React.Fragment key={index}>{j.text}</React.Fragment>
+                    </li>
+                  );
+                })
+              )
+            )}
+          </ul>
+        );
+      case "numbered-list":
+        return (
+          <ol className="list-decimal ml-4 mt-2" key={index}>
+            {obj.children.map((list) =>
+              list.children.map((i) =>
+                i.children.map((j, index) => {
+                  return (
+                    <li>
+                      <React.Fragment key={index}>{j.text}</React.Fragment>
+                    </li>
+                  );
+                })
+              )
+            )}
+          </ol>
         );
       default:
         return modifiedText;
@@ -112,10 +150,20 @@ const PostDetail = ({ post }) => {
         </div>
         <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
         {post.content.raw.children.map((typeObj, index) => {
-          const children = typeObj.children.map((item, itemIndex) =>
-            getContentFragment(itemIndex, item.text, item)
-          );
-
+          const children = typeObj.children.map((item, itemIndex) => {
+            if (item.text === undefined) {
+              let linkText = item.children.map((item) => item.text);
+              return getContentFragment(
+                itemIndex,
+                item.text,
+                item,
+                item.type,
+                linkText,
+                item.href
+              );
+            }
+            return getContentFragment(itemIndex, item.text, item);
+          });
           return getContentFragment(index, children, typeObj, typeObj.type);
         })}
       </div>
